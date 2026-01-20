@@ -1,5 +1,6 @@
 import axios from "axios"
-const BASEURL="http://localhost:5000"
+// const BASEURL="http://localhost:5000"
+const BASEURL="https://vercel.com/ridhis-projects-a45c227d/seedlybknd/6vmZFVmVPCa3feqGDLP58u9V2BPh"
 class ApiServices{
     getToken(){
         let token=sessionStorage.getItem("token")
