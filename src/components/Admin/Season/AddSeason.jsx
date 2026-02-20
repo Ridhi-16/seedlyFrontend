@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import ApiService from "../../services/ApiService";
 import { MoonLoader } from "react-spinners";
+// import CropBubble from "../../pages/CropBubble";
 
 export default function AddSeason() {
     let nav = useNavigate()
@@ -168,6 +169,7 @@ export default function AddSeason() {
                         </div>
                     </div>
             }
+            {/* <CropBubble/> */}
         </>
     )
 }

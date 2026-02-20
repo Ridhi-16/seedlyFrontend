@@ -85,7 +85,9 @@ export default function UserLand() {
                                     <p className="mb-0">Area:{el?.area} sqft</p>
                                     <p className="mb-0">Land Availability:{el.landAvailability}</p>
                                     <p className="mb-2">Price: Rs {el.price}</p>
-                                <Link to={`/booking/add/${el._id}`} className="btn btn-success mx-2"> <i className="fa fa-eye"></i></Link>
+                                <Link to={`/user/viewcrop/${el._id}`} className="btn btn-success mx-2"> <i className="fa fa-eye"></i></Link>
+
+                                {/* <Link to={`/booking/add/${el._id}`} className="btn btn-success mx-2"> <i className="fa fa-eye"></i></Link> */}
 
 
                                 </div>

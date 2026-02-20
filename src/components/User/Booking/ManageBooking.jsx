@@ -2,11 +2,15 @@ import { useEffect, useState } from "react"
 import ApiService from "../../services/ApiService"
 import ReactSwitch from "react-switch"
 import Swal from "sweetalert2"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { toast } from "react-toastify"
 
 export default function ManageBooking() {
     const [booking, setBooking] = useState([])
+
+
+    const navigate = useNavigate()
+
 
     const id = sessionStorage.getItem("userId");
     const fetchData = () => {
@@ -143,79 +147,81 @@ export default function ManageBooking() {
             <div className="container">
                 <div className="row">
                     <div className="col">
-                         {booking.length > 0 ? (
-                        <div className="table-responsive">
-                            < table className="table border">
-                                <thead className="thead-dark">
-                                    <tr>
-                                        <th scope="col">Sno</th>
-                                        <th scope="col">Farmer Name</th>
-                                        <th scope="col">Location</th>
+                        {booking.length > 0 ? (
+                            <div className="table-responsive">
+                                < table className="table border">
+                                    <thead className="thead-dark">
+                                        <tr>
+                                            <th scope="col">Sno</th>
+                                            <th scope="col">Farmer Name</th>
+                                            <th scope="col">Location</th>
 
 
 
-                                        <th scope="col">Land</th>
-                                        <th scope="col">LeaseStartDate</th>
-                                        <th scope="col">LeaseEndDate</th>
-                                        <th scope="col">Season</th>
-                                        <th scope="col">Crop</th>
+                                            <th scope="col">Land</th>
+                                            <th scope="col">LeaseStartDate</th>
+                                            <th scope="col">LeaseEndDate</th>
+                                            <th scope="col">Season</th>
+                                            <th scope="col">Crop</th>
 
-                                        <th scope="col">Amount</th>
-                                        <th scope="col">Status</th>
-                                        <th scope="col">Progress</th>
-
-
-
+                                            <th scope="col">Amount</th>
+                                            <th scope="col">Status</th>
+                                            <th scope="col">Progress</th>
+                                          
 
 
-                                    </tr>
-                                </thead>
-                                <tbody>
-
-                                    {booking?.map((el, index) => (
-                                        <tr key={index}>
-                                            <td className="">{index + 1}</td>
-
-                                            <td >
-                                                <h5>{el?.landId?.farmerId?.name}</h5>
-                                            </td>
-                                            <td >
-                                                <h5>{el?.landId?.location}</h5>
-                                            </td>
-
-                                            <td className="hover-bg">
-                                                <h5> {el?.landId?.farmerId?.name}-{el.landId?.ULPIN}</h5>
-                                            </td>
-
-                                            <td className="hover-bg">
-                                                <h5>{new Date(el?.leaseStartDate).toLocaleDateString("en-IN")}</h5>
-                                            </td>
-                                            <td className="hover-bg">
-                                                <h5> {new Date(el?.leaseEndDate).toLocaleDateString("en-IN")}</h5>
-                                            </td>
-                                            <td className="hover-bg">
-                                                <h5> {el?.seasonId?.seasonName}</h5>
-                                            </td>
-
-                                            <td className="hover-bg">
-                                                <h5> {el?.cropId?.cropName}</h5>
-                                            </td>
-                                            <td className="hover-bg">
-                                                <h5> {el?.price}</h5>
-                                            </td>
 
 
-                                            <td className="hover-bg">
-                                                <h5> {el?.status ? "Booked" : "Pending"}</h5>
-                                            </td>
-                                            <td className="hover-bg">
-                                                {el?.status?(
-                                                
-                                                <Link to={`/user/progress/${el._id}`} className="btn btn-success mx-2"> <i className="fa fa-eye"></i></Link>
-                                                ):( "")}
-                                            </td>
 
-                                            {/* <td >
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        {booking?.map((el, index) => (
+                                            <tr key={index}>
+                                                <td className="">{index + 1}</td>
+
+                                                <td >
+                                                    <h5>{el?.landId?.farmerId?.name}</h5>
+                                                </td>
+                                                <td >
+                                                    <h5>{el?.landId?.location}</h5>
+                                                </td>
+
+                                                <td className="hover-bg">
+                                                    <h5> {el?.landId?.farmerId?.name}-{el.landId?.ULPIN}</h5>
+                                                </td>
+
+                                                <td className="hover-bg">
+                                                    <h5>{new Date(el?.leaseStartDate).toLocaleDateString("en-IN")}</h5>
+                                                </td>
+                                                <td className="hover-bg">
+                                                    <h5> {new Date(el?.leaseEndDate).toLocaleDateString("en-IN")}</h5>
+                                                </td>
+                                                <td className="hover-bg">
+                                                    <h5> {el?.seasonId?.seasonName}</h5>
+                                                </td>
+
+                                                <td className="hover-bg">
+                                                    <h5> {el?.cropId?.cropName}</h5>
+                                                </td>
+                                                <td className="hover-bg">
+                                                    <h5> {el?.price}</h5>
+                                                </td>
+
+
+                                                <td className="hover-bg">
+                                                    <h5> {el?.status ? "Booked" : "Pending"}</h5>
+                                                </td>
+                                                <td className="hover-bg">
+                                                    {el?.status ? (
+
+                                                        <Link to={`/user/progress/${el._id}`} className="btn btn-success mx-2"> <i className="fa fa-eye"></i></Link>
+                                                    ) : ("")}
+                                                </td>
+
+
+                                                {/* <td >
                             <button className="btn">
                                 <ReactSwitch
                               checked={el?.status}
@@ -223,23 +229,25 @@ export default function ManageBooking() {
                           <button  className="btn" onClick={() => {deleteBooking(el?._id)}}><i class="fa fa-trash" aria-hidden="true"></i></button>
                             <Link to={`/booking/update/${el._id}`} className="btn btn-success mx-2"> <i className="fa fa-edit"></i></Link>
                           </td> */}
-                                        </tr>
-                                    ))}
+                                            </tr>
+                                        ))}
 
-                                </tbody>
-                            </table>
-                        </div>
-                         ) : (
-              <div className="col-12 text-center">
-                <h4 className="text-muted">
-                  No Booking available
-                </h4>
-                <p>Please check back later.</p>
-              </div>
-            )}
+                                    </tbody>
+                                </table>
+                            </div>
+                        ) : (
+                            <div className="col-12 text-center">
+                                <h4 className="text-muted">
+                                    No Booking available
+                                </h4>
+                                <p>Please check back later.</p>
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>
+
+
 
         </>
     )

@@ -3,7 +3,7 @@
 
 
 import Header from './components/layouts/Header'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, useParams } from 'react-router-dom'
 
 
 
@@ -23,36 +23,49 @@ import Login from './components/auth/Login'
 import { Bounce, ToastContainer } from 'react-toastify'
 import Register from './components/auth/Register'
 import FarmerRegister from './components/auth/FarmerRegister'
-import AddSeason from './components/Admin/Season/AddSeason'
-import AllSeason from './components/Admin/Season/AllSeason'
-import UpdateSeason from './components/Admin/Season/UpdateSeason'
-import AddLand from './components/Farmer/Land/AddLand'
+import AddSeason from './components/admin/season/AddSeason'
+import AllSeason from './components/admin/season/AllSeason'
+import UpdateSeason from './components/admin/season/UpdateSeason'
+import AddLand from './components/farmer/land/AddLand'
 
-import UpdateLand from './components/Farmer/Land/UpdateLand'
-import AddCrop from './components/Farmer/Crop/AddCrop'
-import AllCrop from './components/Farmer/Crop/AllCrop'
-import Updatecrop from './components/Farmer/Crop/UpdateCrop'
-import AllBooking from './components/Admin/Booking/AllBooking'
-import UpdateBooking from './components/User/Booking/UpdateBooking'
-import AddProgress from './components/Farmer/Progress/AddProgress'
-import AllProgress from './components/Farmer/Progress/AllProgress'
-import UpdateProgress from './components/Farmer/Progress/UpdateProgress'
+import UpdateLand from './components/farmer/land/UpdateLand'
+import AddCrop from './components/farmer/crop/AddCrop'
+import AllCrop from './components/farmer/crop/AllCrop'
+import Updatecrop from './components/farmer/crop/UpdateCrop'
+import AllBooking from './components/admin/booking/AllBooking'
+import UpdateBooking from './components/user/booking/UpdateBooking'
+import AddProgress from './components/farmer/progress/AddProgress'
+import AllProgress from './components/farmer/progress/AllProgress'
+import UpdateProgress from './components/farmer/progress/UpdateProgress'
 import AdminLayout from './components/layouts/AdminLayout'
 import FarmerLayout from './components/layouts/FarmerLayout'
-import AllLand from './components/Admin/Land/AllLand'
+import AllLand from './components/admin/land/AllLand'
 // import ManageBooking from './components/User/ManageBooking'
 // import AddBooking from './components/User/AddBooking'
-import ManageLand from './components/Farmer/Land/ManageLand'
-import UserLand from './components/User/Land/UserLand'
-import UserCrop from './components/User/Crop/UserCrop'
-import UserSeason from './components/User/Season/UserSeason'
+import ManageLand from './components/farmer/land/ManageLand'
+import UserLand from './components/user/land/UserLand'
+import UserCrop from './components/user/crop/UserCrop'
+import UserSeason from './components/user/season/UserSeason'
 import AdminDashboard from './components/auth/AdminDashboard'
-import FarmerDashboard from './components/Farmer/FarmerDashboard'
-import FarmerBooking from './components/Farmer/Booking/FarmerBooking'
-import AddBooking from './components/User/Booking/AddBooking'
-import ManageBooking from './components/User/Booking/ManageBooking'
-import UserProgress from './components/User/Progress/UserProgress'
-import ManageUsers from './components/Admin/User/ManageUsers'
+import FarmerDashboard from './components/farmer/FarmerDashboard'
+import FarmerBooking from './components/farmer/booking/FarmerBooking'
+import AddBooking from './components/user/booking/AddBooking'
+import ManageBooking from './components/user/booking/ManageBooking'
+import UserProgress from './components/user/progress/UserProgress'
+import ManageUsers from './components/admin/user/ManageUsers'
+import ViewLand from './components/user/crop/ViewLand'
+import ViewCrop from './components/user/land/ViewCrop'
+import Chat from './components/user/Chat'
+import FarmerChat from './components/farmer/chat/FarmerChat'
+import FarmerChatWrapper from './components/farmer/chat/FarmerChatWrapper'
+import AdminChatWrapper from './components/admin/chat/AdminChatWrapper'
+import AdminChat from './components/admin/chat/AdminChat'
+import ManageFarmers from './components/admin/user/ManageFarmers'
+
+function ChatWrapper() {
+  const { receiverId } = useParams()
+  return <Chat receiverId={receiverId} />
+}
 
 
 function App() {
@@ -89,13 +102,18 @@ function App() {
            <Route path="/booking/update/:id" element={<UpdateBooking/>}/>
            <Route path="/user/land" element={<UserLand/>}/>
            <Route path="/user/crop/:id" element={<UserCrop/>}/>
+           <Route path="/user/viewland/:id" element={<ViewLand/>}/>
+           <Route path="/user/viewcrop/:id" element={<ViewCrop/>}/>
+
+
            <Route path="/user/season" element={<UserSeason/>}/>
            <Route path="/user/progress/:id" element={<UserProgress/>}/>
 
 
 
 
-          
+          <Route path="/chat/:receiverId" element={<ChatWrapper />} />
+
             
           </Route>
 
@@ -107,6 +125,12 @@ function App() {
            <Route path="season/update/:id" element={<UpdateSeason/>}/>
            <Route path="booking/all" element={<AllBooking/>}/>
            <Route path="user/all" element={<ManageUsers/>}/>
+           <Route path="farmer/all" element={<ManageFarmers/>}/>
+
+
+           <Route path="chat" element={<AdminChat />} />
+<Route path="chat/:farmerId" element={<AdminChatWrapper />} />
+
 
 
            
@@ -127,6 +151,9 @@ function App() {
            <Route path="progress/all" element={<AllProgress/>}/>
            <Route path="progress/update/:id" element={<UpdateProgress/>}/>
            
+
+           <Route path="chat" element={<FarmerChat />} />
+  <Route path="chat/:userId" element={<FarmerChatWrapper />} />
 
             
           </Route>

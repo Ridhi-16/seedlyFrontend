@@ -1,16 +1,20 @@
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import ApiService from "../services/ApiService"
+import { Link } from "react-router-dom";
 
 export default function FarmerDashboard(){
     const [details, setDetails]=useState([])
    const id = sessionStorage.getItem("userId");
+  //  const ADMIN_ID = "696dcb4958890a32a8a2ba03"
     const fetchData=()=>{
       const data = {
             userId: id,
             farmerId:id
         };
       
+        
+
         ApiService.dashboard(data)
          .then((res)=>{
                     console.log(res)
@@ -84,9 +88,11 @@ export default function FarmerDashboard(){
               {details.totalfarmLand}            </p>
           </div>
         </div>
+       
       </div>
     </div>
   </div>
+
 
 
 

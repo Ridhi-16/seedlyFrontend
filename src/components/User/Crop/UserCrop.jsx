@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { toast } from "react-toastify"
 import ApiService from "../../services/ApiService"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
+// import CropBubble from "../../pages/CropBubble"
 
 export default function UserCrop() {
     const [crop, setCrop] = useState([])
@@ -75,6 +76,11 @@ export default function UserCrop() {
                                             <p className="mb-0">
                                                 Description: {el.description}
                                             </p>
+<Link to={`/user/viewland/${el.landId._id}`} className="btn btn-success mx-2">
+    <i className="fa-regular fa-eye"></i>
+  </Link>
+                                            
+
                                         </div>
                                     </div>
                                 ))
@@ -122,6 +128,7 @@ export default function UserCrop() {
                     />
                 </div>
             )}
+            {/* <CropBubble/> */}
 
         </>
     )

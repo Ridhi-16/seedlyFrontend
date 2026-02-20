@@ -17,7 +17,7 @@ export default function ManageUsers() {
         //     limit: Limit,
         //     currentPage: currentPage
         // }
-        ApiService.allUser()
+        ApiService.allUser({userType:"3"})
             .then((res) => {
                 console.log(res)
                 if (res.data.success) {

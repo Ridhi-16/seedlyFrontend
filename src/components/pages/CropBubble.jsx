@@ -70,7 +70,7 @@ export default function CropBubble() {
       <SpeedDial  
         ariaLabel="Crop Advisor"
         icon={<YardIcon />}
-        sx={{ position: "fixed", bottom: 16, right: 16, "& .MuiFab-primary": {
+        sx={{ position: "fixed", bottom: 16, left: 16, "& .MuiFab-primary": {
       backgroundColor: "#388e3c", // button color
       color: "#ffffff",           // icon color
     },
@@ -80,7 +80,7 @@ export default function CropBubble() {
         onClick={() => setOpen(true)}
       />
 
-      <Drawer anchor="right" open={open} onClose={() => setOpen(false)}>
+      <Drawer anchor="left" open={open} onClose={() => setOpen(false)}>
         <div style={{ width: 400, padding: 24 }}>
           <Typography variant="h5" gutterBottom>
             Crop Suggestions

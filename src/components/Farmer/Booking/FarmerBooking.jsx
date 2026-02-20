@@ -150,7 +150,7 @@ export default function FarmerBooking() {
         <div className="container py-5">
           <div className="row justify-content-start">
             <div className="col-lg-8 text-center text-lg-start">
-              <h1 className="display-1 text-white mb-md-4">Farmer Bookings</h1>
+              <h1 className="display-1 text-white mb-md-4">User Bookings</h1>
               <Link to="/farmer" className="btn btn-primary py-md-3 px-md-5 me-3">
                 Home
               </Link>
@@ -233,9 +233,13 @@ export default function FarmerBooking() {
                               onChange={() => { softDelete(el?._id, el?.status) }} /></button>
                           <button className="btn" onClick={() => { deleteBooking(el?._id) }}><i className="fa fa-trash" aria-hidden="true"></i></button>
                           {/* <Link to={`/booking/update/${el._id}`} className="btn btn-success mx-2"> <i className="fa fa-edit"></i></Link> */}
+                         
                         </td>
                       </tr>
                     ))}
+
+                    
+
 
                   </tbody>
                 </table>

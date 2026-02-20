@@ -118,6 +118,9 @@ export default function AdminHeader() {
                          <Link to="/admin/user/all" className="nav-item nav-link">
                             User
                         </Link>
+                        <Link to="/admin/farmer/all" className="nav-item nav-link">
+                          Farmer
+                        </Link>
 
                         {/* <Link to="/product" className="nav-item nav-link">
                             Product

@@ -7,6 +7,8 @@ import FarmerHeader from "./FarmerHeader";
 import { MoonLoader } from "react-spinners";
 import CropBubble from "../pages/CropBubble";
 
+import FarmerChatWidget from "../farmer/chat/FarmerChatWidget";
+
 
 export default function FarmerLayout(){
     
@@ -29,7 +31,10 @@ export default function FarmerLayout(){
         
         <FarmerHeader/>
         <Outlet/>
-         <CropBubble/>
+       <FarmerChatWidget/>
+               <CropBubble/>
+       
+         
         <Footer/>
         </>
     )

@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { MoonLoader } from "react-spinners";
 import CropBubble from "../pages/CropBubble";
+import AdminChatWidget from "../admin/chat/AdminChatWidget";
 
 
 export default function AdminLayout(){
@@ -26,7 +27,9 @@ export default function AdminLayout(){
                 <AdminHeader />
 
                <Outlet/>
-                <CropBubble/>
+                       <CropBubble/>
+               
+                <AdminChatWidget/>
 
                 <Footer />
            

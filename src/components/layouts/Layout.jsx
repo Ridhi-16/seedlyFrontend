@@ -4,6 +4,8 @@ import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import { MoonLoader } from "react-spinners";
 import CropBubble from "../pages/CropBubble";
+import ChatWidget from "../user/ChatWidget";
+import FloatingWidget from "../pages/FloatingWidget";
 
 export default function Layout(){
      
@@ -13,6 +15,10 @@ export default function Layout(){
         
         <Header/>
         <Outlet/>
+       {/* <FloatingWidget/> */}
+      <ChatWidget />
+   
+
         <CropBubble/>
         <Footer/>
         </>

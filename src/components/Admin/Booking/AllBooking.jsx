@@ -156,6 +156,7 @@ export default function AllBooking() {
                         <th scope="col">Amount</th>
 
                         <th scope="col">Status</th>
+                        
 
 
 
@@ -199,6 +200,7 @@ export default function AllBooking() {
                             <h5> {el?.status ? "Booked" : "Pending"}</h5>
                           </td>
                           <td >
+                           
                             {/* <button className="btn">
                                 <ReactSwitch
                               checked={el?.status}

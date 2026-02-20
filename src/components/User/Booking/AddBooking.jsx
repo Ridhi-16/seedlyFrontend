@@ -33,7 +33,8 @@ export default function AddBooking() {
             status:true
         }
         const cropData={
-            status:true
+            status:true,
+            
         }
 
         ApiService.allSeason(seasonData)
@@ -149,40 +150,96 @@ export default function AddBooking() {
 
 
 
+    // const handleForm = (data) => {
+    //     setload(true)
+    //     data.seasonId = seasonId
+    //     data.landId = id
+    //     data.cropId = cropId
+
+    //     data.userId = userId
+
+
+    //     console.log("form Submitted", data);
+    //     ApiService.addBooking(data)
+    //         .then((res) => {
+    //             if (res.data.success) {
+    //                 setload(false)
+    //                 console.log(res.data)
+    //                 toast.success(res.data.message)
+
+    //                 nav("/booking/manage")
+    //             }
+    //             else {
+    //                 setload(false)
+    //                 toast.error(res.data.message)
+    //             }
+
+    //         })
+    //         .catch((err) => {
+    //             setload(false)
+    //             toast.error(err?.response?.data?.message || "All fields are required");
+
+    //             toast.error(err.message);
+
+    //         })
+
+    // }
+
     const handleForm = (data) => {
-        setload(true)
-        data.seasonId = seasonId
-        data.landId = id
-        data.cropId = cropId
 
-        data.userId = userId
-
-
-        console.log("form Submitted", data);
-        ApiService.addBooking(data)
-            .then((res) => {
-                if (res.data.success) {
-                    setload(false)
-                    console.log(res.data)
-                    toast.success(res.data.message)
-
-                    nav("/booking/manage")
-                }
-                else {
-                    setload(false)
-                    toast.error(res.data.message)
-                }
-
-            })
-            .catch((err) => {
-                setload(false)
-                toast.error(err?.response?.data?.message || "All fields are required");
-
-                toast.error(err.message);
-
-            })
-
+    if (!seasonId || !cropId) {
+        toast.error("Please select season and crop");
+        return;
     }
+
+    const bookingData = {
+        userId: userId,
+        landId: id,
+        cropId: cropId,
+        seasonId: seasonId,
+        price: data.price,
+        leaseStartDate: data.leaseStartDate,
+        leaseEndDate: data.leaseEndDate,
+        status: true
+    };
+
+    const options = {
+        key: "rzp_test_Q8bKRaQdmgftXW",  // your razorpay key
+        amount: data.price * 100,
+        currency: "INR",
+        name: "Land Booking",
+        description: "Season Crop Booking",
+
+        handler: function (response) {
+
+            // Add transactionId to booking
+            bookingData.transactionId = response.razorpay_payment_id;
+
+            ApiService.addBooking(bookingData)
+                .then((res) => {
+                    if (res.data.success) {
+                        toast.success("Booking Payment Successful!");
+                        nav("/booking/manage");
+                    } else {
+                        toast.error(res.data.message);
+                    }
+                })
+                .catch(err => toast.error(err.message));
+        },
+
+        prefill: {
+            name: sessionStorage.getItem("name") || "User",
+            email: sessionStorage.getItem("email") || "user@email.com",
+            contact: sessionStorage.getItem("contact") || "9999999999"
+        },
+
+        theme: { color: "#0d6efd" }
+    };
+
+    const rzp = new window.Razorpay(options);
+    rzp.open();
+};
+
     const handleError = (error) => {
         setload(false)
         console.log("err", error);
@@ -312,7 +369,7 @@ export default function AddBooking() {
                                             <div className="row mb-3">
                                                 <div className="col-12">
                                                     <button className="btn btn-secondary w-100 py-3" type="submit">
-                                                        ADD
+                                                       Book
                                                     </button>
                                                 </div>
                                             </div>

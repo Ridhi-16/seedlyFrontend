@@ -142,11 +142,10 @@ export default function Register(){
                                     <div className="row mb-3">
                                         <div className="col-lg-12 col-md-12 col-sm-12">
                                             <input
-                                             required
-                                            
+                                                 required
                                                 type="text"
-                                                className="form-control bg-white border-0"
-                                                placeholder="Name"
+                                                className="form-control bg-white border-0 "
+                                                placeholder="Your Name"
                                                 style={{ height: 55 }}
                                                 {...register("name", {
                                                     required: {

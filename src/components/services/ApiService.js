@@ -1,6 +1,6 @@
 import axios from "axios"
 // const BASEURL="http://localhost:5000"
-const BASEURL="https://vercel.com/ridhis-projects-a45c227d/seedlybknd/6vmZFVmVPCa3feqGDLP58u9V2BPh"
+const BASEURL="https://seedlybknd.onrender.com"
 class ApiServices{
     getToken(){
         let token=sessionStorage.getItem("token")
@@ -125,6 +125,76 @@ class ApiServices{
       BASEURL + "/gemini/suggest",
       data,
        // optional auth
+    );
+  }
+
+
+  getChatFarmers(userId) {
+    return axios.post(
+      `${BASEURL}/get-chat-farmers`,
+      { userId },
+      { headers: this.headers }
+    );
+  }
+
+  // Get all users who booked a farmer's lands
+  getChatUsers(farmerId) {
+    return axios.post(
+      `${BASEURL}/get-chat-users`,
+      { farmerId },
+      { headers: this.headers }
+    );
+  }
+
+  // Get admin for farmer chat
+  getAdmin() {
+    return axios.post(`${BASEURL}/get-admin`, {}, { headers: this.headers });
+  }
+
+  // ================== Admin Side ==================
+  // Get all farmers for admin chat
+  getChatAdminFarmers() {
+    return axios.post(
+      `${BASEURL}/get-chat-adminfarmers`,
+      {},
+      { headers: this.headers }
+    );
+  }
+
+  // Get admin conversations
+  getAdminConversations(adminId) {
+    return axios.post(
+      `${BASEURL}/admin-conversations`,
+      { adminId },
+      { headers: this.headers }
+    );
+  }
+
+  // ================== Messaging ==================
+  // Load old messages between user and receiver
+  getMessages(userId, receiverId) {
+    return axios.post(
+      `${BASEURL}/get-messages`,
+      { userId, receiverId },
+      { headers: this.headers }
+    );
+  }
+
+  // Get farmer conversations
+  getFarmerConversations(farmerId) {
+    return axios.post(
+      `${BASEURL}/conversations`,
+      { farmerId },
+      { headers: this.headers }
+    );
+  }
+
+  // Send message
+  sendMessage(senderId, receiverId, message) {
+    return axios.post(
+      `${BASEURL}/send-message`, // make sure you have this route
+      { senderId, receiverId, message },
+      { headers: this.headers }
     );
   }
 

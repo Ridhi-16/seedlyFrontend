@@ -1,12 +1,14 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useForm } from "react-hook-form"
 import { useNavigate, useParams } from "react-router-dom"
 import ApiService from "../../services/ApiService"
 import { toast } from "react-toastify"
+import { MoonLoader } from "react-spinners"
 
 export default function UpdateSeason() {
 
     let { id } = useParams()
+    const [load, setload] = useState(false)
     let nav = useNavigate()
     const { register, handleSubmit, setValue, reset, formState: { errors } } = useForm()
 
@@ -43,7 +45,9 @@ export default function UpdateSeason() {
 
 
     const handleForm = (data) => {
+        setload(true)
          const formData = new FormData();
+          formData.append("seasonName", data.seasonName);
         formData.append("startMonth", data.startMonth);
         // formData.append("duration", data.duration);
         formData.append("endMonth", data.endMonth);
@@ -62,6 +66,7 @@ export default function UpdateSeason() {
         ApiService.updateSeason(formData)
             .then((res) => {
                 if (res.data.success) {
+                    setload(false)
                     console.log(res.data)
                     toast.success(res.data.message)
                     nav("/admin/season/all")
@@ -72,19 +77,37 @@ export default function UpdateSeason() {
 
             })
             .catch((err) => {
+                    setload(false)
+
                 toast.error(err.message);
 
             })
 
     }
     const handleError = (error) => {
+                    setload(false)
+
         console.log("err", error);
 
     }
 
 
     return (
-        <>
+        <>{load ?
+                    (<div style={{
+                        position: "fixed",
+                        inset: 0,
+                        backgroundColor: "rgba(255,255,255,0.6)",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        zIndex: 9999
+                    }}>
+                        <div style={{ transform: "translateY(-40px)" }}>
+                            <MoonLoader size={50} />
+                        </div>
+                    </div>)
+                    :
 
             <div className="container">
                 <div className="row d-flex justify-content-center align-items-center vh-100">
@@ -176,6 +199,7 @@ export default function UpdateSeason() {
                     </div>
                 </div>
             </div>
+    }
         </>
     )
 }
