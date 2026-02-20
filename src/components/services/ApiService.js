@@ -1,6 +1,6 @@
 import axios from "axios"
 // const BASEURL="http://localhost:5000"
-const BASEURL="https://seedlybknd.onrender.com"
+const BASEURL="https://seedlybackend.onrender.com"
 class ApiServices{
     getToken(){
         let token=sessionStorage.getItem("token")
@@ -131,7 +131,7 @@ class ApiServices{
 
   getChatFarmers(userId) {
     return axios.post(
-      `${BASEURL}/get-chat-farmers`,
+      `${BASEURL}/chat/get-chat-farmers`,
       { userId },
       { headers: this.headers }
     );
@@ -140,7 +140,7 @@ class ApiServices{
   // Get all users who booked a farmer's lands
   getChatUsers(farmerId) {
     return axios.post(
-      `${BASEURL}/get-chat-users`,
+      `${BASEURL}/chat/get-chat-users`,
       { farmerId },
       { headers: this.headers }
     );
@@ -148,14 +148,14 @@ class ApiServices{
 
   // Get admin for farmer chat
   getAdmin() {
-    return axios.post(`${BASEURL}/get-admin`, {}, { headers: this.headers });
+    return axios.post(`${BASEURL}/chat/get-admin`, {}, { headers: this.headers });
   }
 
   // ================== Admin Side ==================
   // Get all farmers for admin chat
   getChatAdminFarmers() {
     return axios.post(
-      `${BASEURL}/get-chat-adminfarmers`,
+      `${BASEURL}/chat/get-chat-adminfarmers`,
       {},
       { headers: this.headers }
     );
@@ -164,7 +164,7 @@ class ApiServices{
   // Get admin conversations
   getAdminConversations(adminId) {
     return axios.post(
-      `${BASEURL}/admin-conversations`,
+      `${BASEURL}/chat/admin-conversations`,
       { adminId },
       { headers: this.headers }
     );
@@ -174,7 +174,7 @@ class ApiServices{
   // Load old messages between user and receiver
   getMessages(userId, receiverId) {
     return axios.post(
-      `${BASEURL}/get-messages`,
+      `${BASEURL}/chat/get-messages`,
       { userId, receiverId },
       { headers: this.headers }
     );
@@ -183,7 +183,7 @@ class ApiServices{
   // Get farmer conversations
   getFarmerConversations(farmerId) {
     return axios.post(
-      `${BASEURL}/conversations`,
+      `${BASEURL}/chat/conversations`,
       { farmerId },
       { headers: this.headers }
     );
@@ -192,7 +192,7 @@ class ApiServices{
   // Send message
   sendMessage(senderId, receiverId, message) {
     return axios.post(
-      `${BASEURL}/send-message`, // make sure you have this route
+      `${BASEURL}/chat/send-message`, // make sure you have this route
       { senderId, receiverId, message },
       { headers: this.headers }
     );
