@@ -23,16 +23,15 @@ import Login from './components/auth/Login'
 import { Bounce, ToastContainer } from 'react-toastify'
 import Register from './components/auth/Register'
 import FarmerRegister from './components/auth/FarmerRegister'
-// import AddSeason from './components/admin/season/AddSeason'
-import AllSeason from './components/admin/season/AllSeason'
-import UpdateSeason from './components/admin/season/UpdateSeason'
+
+
 import AddLand from './components/farmer/land/AddLand'
 
 import UpdateLand from './components/farmer/land/UpdateLand'
 import AddCrop from './components/farmer/crop/AddCrop'
 import AllCrop from './components/farmer/crop/AllCrop'
 import Updatecrop from './components/farmer/crop/UpdateCrop'
-import AllBooking from './components/admin/booking/AllBooking'
+
 import UpdateBooking from './components/user/booking/UpdateBooking'
 import AddProgress from './components/farmer/progress/AddProgress'
 import AllProgress from './components/farmer/progress/AllProgress'
@@ -52,16 +51,19 @@ import FarmerBooking from './components/farmer/booking/FarmerBooking'
 import AddBooking from './components/user/booking/AddBooking'
 import ManageBooking from './components/user/booking/ManageBooking'
 import UserProgress from './components/user/progress/UserProgress'
-import ManageUsers from './components/admin/user/ManageUsers'
 import ViewLand from './components/user/crop/ViewLand'
 import ViewCrop from './components/user/land/ViewCrop'
 import Chat from './components/user/Chat'
 import FarmerChat from './components/farmer/chat/FarmerChat'
 import FarmerChatWrapper from './components/farmer/chat/FarmerChatWrapper'
-import AdminChatWrapper from './components/admin/chat/AdminChatWrapper'
-import AdminChat from './components/admin/chat/AdminChat'
-import ManageFarmers from './components/admin/user/ManageFarmers'
 import AddSeason from './components/admin/season/AddSeason'
+import AllSeason from './components/admin/season/AllSeason'
+import UpdateSeason from './components/admin/season/UpdateSeason'
+import AllBooking from './components/admin/booking/AllBooking'
+import ManageUsers from './components/admin/user/ManageUsers'
+import ManageFarmers from './components/admin/user/ManageFarmers'
+import AdminChatWrapper from './components/admin/chat/AdminChatWrapper'
+import AdminChatWidget from './components/admin/chat/AdminChat'
 
 function ChatWrapper() {
   const { receiverId } = useParams()
@@ -129,7 +131,7 @@ function App() {
            <Route path="farmer/all" element={<ManageFarmers/>}/>
 
 
-           <Route path="chat" element={<AdminChat />} />
+           <Route path="chat" element={<AdminChat/>} />
 <Route path="chat/:farmerId" element={<AdminChatWrapper />} />
 
 
