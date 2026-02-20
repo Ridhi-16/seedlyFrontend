@@ -23,7 +23,7 @@ import Login from './components/auth/Login'
 import { Bounce, ToastContainer } from 'react-toastify'
 import Register from './components/auth/Register'
 import FarmerRegister from './components/auth/FarmerRegister'
-import AddSeason from './components/admin/season/AddSeason'
+// import AddSeason from './components/admin/season/AddSeason'
 import AllSeason from './components/admin/season/AllSeason'
 import UpdateSeason from './components/admin/season/UpdateSeason'
 import AddLand from './components/farmer/land/AddLand'
@@ -61,6 +61,7 @@ import FarmerChatWrapper from './components/farmer/chat/FarmerChatWrapper'
 import AdminChatWrapper from './components/admin/chat/AdminChatWrapper'
 import AdminChat from './components/admin/chat/AdminChat'
 import ManageFarmers from './components/admin/user/ManageFarmers'
+import AddSeason from './components/admin/season/AddSeason'
 
 function ChatWrapper() {
   const { receiverId } = useParams()
